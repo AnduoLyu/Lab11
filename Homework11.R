@@ -6,10 +6,8 @@ rbinomial <- function(n, p){
 rbinomial(25, 0.4)
 
 # Q2
-microbenchmark::microbenchmark(replicate(1000, {
-  rbinomial(25, 0.4)
-}))
-microbenchmark::microbenchmark(rbinom(1000, 25, 0.4))
+library(microbenchmark)
+microbenchmark(rbinomial(25, 0.4), rbinom(1000, 25, 0.4))
 
 
 # Q3
@@ -19,7 +17,6 @@ beta0 <- 15
 beta1 <- 0.4
 error <- rnorm(50, 0, 3)
 y_est <- beta0 + beta1 * xi + error
-y_true <- beta0 + beta1 * xi
 dataq3 <- data.frame(y_est, error)
 
 ggplot(data = dataq3) +
