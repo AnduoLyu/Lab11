@@ -17,10 +17,11 @@ beta0 <- 15
 beta1 <- 0.4
 error <- rnorm(50, 0, 3)
 y_est <- beta0 + beta1 * xi + error
-dataq3 <- data.frame(y_est, error)
+fit <- lm(y_est ~ xi)
+dataq3 <- data.frame(fit$residuals, fit$fitted.values)
 
 ggplot(data = dataq3) +
-  geom_point(aes(x = y_est, y = error)) +
+  geom_point(aes(x = fit$fitted.values, y = fit$residuals)) +
   labs(x = "Fitted Value", y = "Residuals")
 
 
